@@ -46,4 +46,29 @@ class EncryptorTest < Minitest::Test
 
     assert_equal 19, encryptor.index_position
   end
+
+  def test_reassign_index_position
+    encryptor = Encryptor.new("t")
+    encryptor.split_chars
+
+    assert_equal 0, encryptor.reset_index_position
+  end
+
+  def test_if_index_can_be_reassigned
+    encryptor = Encryptor.new("t")
+    encryptor.split_chars
+
+    offset = Offset.new('54345')
+
+    assert_equal offset.a_rotation, encryptor.new_index_position
+  end
+
+  def test_new_rotation_character
+    encryptor = Encryptor.new("f")
+    encryptor.split_chars
+
+    offset = Offset.new('54345')
+
+    assert_equal ["0"], encryptor.new_index_character
+  end
 end
