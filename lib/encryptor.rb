@@ -1,4 +1,5 @@
 require_relative 'offset'
+require 'pry'
 
 # Encryptor class implementation code.
 class Encryptor
@@ -76,4 +77,15 @@ class Encryptor
     Hash[alphabet.zip(rotate_alphabet_by_d)]
   end
 
+  def convert_substring
+    substring_a = hash_a[split_chars[0]]
+    substring_b = hash_b[split_chars[1]]
+    substring_c = hash_c[split_chars[2]]
+    substring_d = hash_d[split_chars[3]]
+    "#{substring_a}#{substring_b}#{substring_c}#{substring_d}"
+  end
+
 end
+
+encryptor = Encryptor.new("hell")
+print encryptor.hash_a

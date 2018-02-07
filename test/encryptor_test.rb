@@ -51,11 +51,19 @@ class EncryptorTest < Minitest::Test
   end
 
   def test_that_hash_can_be_created
-    skip
     encryptor = Encryptor.new('message')
 
     expected =
-    actual = encryptor.hash_a
+    actual = encryptor.hash_c
+
+    assert_equal expected, actual
+  end
+
+  def test_that_substring_can_be_encrypted
+    encryptor = Encryptor.new('hellhell')
+
+    expected = "ojnpojnp"
+    actual = encryptor.convert_substring
 
     assert_equal expected, actual
   end
@@ -64,7 +72,7 @@ class EncryptorTest < Minitest::Test
   #   encryptor = Encryptor.new('messagemessage')
   #
   #   expected = 'tjuwhlgtjuwhlg'
-  #   actual = encryptor.encrypt
+  #   actual = encryptor.convert_substring
   #
   #   assert_equal expected, actual
   # end
