@@ -3,9 +3,9 @@ require_relative 'offset'
 # Implementation code for decryptor function.
 class Decryptor
   attr_reader :message
-  def initialize(message)
+  def initialize(message,key)
     @message = message
-    @offset = Offset.new('00000')
+    @offset = Offset.new(key)
   end
 
   def split_chars

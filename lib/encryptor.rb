@@ -9,6 +9,16 @@ class Encryptor
     @offset = Offset.new('00000')
   end
 
+  def alphabet
+    ['a', 'b', 'c', 'd', 'e', 'f',
+      'g', 'h', 'i', 'j', 'k', 'l',
+      'm', 'n', 'o', 'p', 'q', 'r',
+      's', 't', 'u', 'v', 'w', 'x',
+      'y', 'z', '0', '1', '2', '3',
+      '4', '5', '6', '7', '8', '9',
+      ' ', '.', ',']
+    end
+
   def split_chars
     @message.downcase.chars
   end
@@ -17,16 +27,6 @@ class Encryptor
     sub_strings = []
     split_chars.each_slice(4) { |letter| sub_strings << letter }
     sub_strings
-  end
-
-  def alphabet
-    ['a', 'b', 'c', 'd', 'e', 'f',
-     'g', 'h', 'i', 'j', 'k', 'l',
-     'm', 'n', 'o', 'p', 'q', 'r',
-     's', 't', 'u', 'v', 'w', 'x',
-     'y', 'z', '0', '1', '2', '3',
-     '4', '5', '6', '7', '8', '9',
-     ' ', '.', ',']
   end
 
   def rotate_alphabet_by_b
@@ -78,13 +78,13 @@ class Encryptor
   end
 
   def encrypt
-    encrypted_message = groups_of_four.map do |substring|
-      a = hash_a[substring[0]]
-      b = hash_b[substring[1]]
-      c = hash_c[substring[2]]
-      d = hash_d[substring[3]]
-      "#{a}#{b}#{c}#{d}"
-    end
-    encrypted_message.join
+  encrypted_message = groups_of_four.map do |substring|
+    a = hash_a[substring[0]]
+    b = hash_b[substring[1]]
+    c = hash_c[substring[2]]
+    d = hash_d[substring[3]]
+    "#{a}#{b}#{c}#{d}"
+  end
+  encrypted_message.join
   end
 end
