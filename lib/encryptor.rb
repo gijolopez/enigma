@@ -4,9 +4,9 @@ require 'pry'
 # Encryptor class implementation code.
 class Encryptor
   attr_reader :message
-  def initialize(message)
+  def initialize(message,key,date)
     @message = message
-    @offset = Offset.new('00000')
+    @offset = Offset.new(key,date)
   end
 
   def alphabet

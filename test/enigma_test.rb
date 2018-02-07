@@ -19,4 +19,10 @@ class EnigmaTest < Minitest::Test
     assert_equal 'hell' , enigma.decrypt('ojnp','00000')
   end
 
+  def test_can_enigma_encrypt
+    enigma = Enigma.new
+
+    assert_equal 'ojnp' , enigma.encrypt('hell','00000')
+  end
+
 end
