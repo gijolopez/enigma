@@ -1,8 +1,7 @@
 require_relative 'offset'
-require 'pry'
 
-# Encryptor class implementation code.
-class Encryptor
+# Implementation code for decryptor function.
+class Decryptor
   attr_reader :message
   def initialize(message)
     @message = message
@@ -29,6 +28,14 @@ class Encryptor
      ' ', '.', ',']
   end
 
+  def rotate_alphabet_by_a
+    alphabet_a = alphabet
+    @offset.a_rotation.times do
+      alphabet_a.push(alphabet_a.shift)
+    end
+    alphabet_a
+  end
+
   def rotate_alphabet_by_b
     alphabet_b = alphabet
     @offset.b_rotation.times do
@@ -53,38 +60,30 @@ class Encryptor
     alphabet_d
   end
 
-  def rotate_alphabet_by_a
-    alphabet_a = alphabet
-    @offset.a_rotation.times do
-      alphabet_a.push(alphabet_a.shift)
-    end
-    alphabet_a
-  end
-
   def hash_a
-    Hash[alphabet.zip(rotate_alphabet_by_a)]
+    (Hash[alphabet.zip(rotate_alphabet_by_a)]).invert
   end
 
   def hash_b
-    Hash[alphabet.zip(rotate_alphabet_by_b)]
+    (Hash[alphabet.zip(rotate_alphabet_by_b)]).invert
   end
 
   def hash_c
-    Hash[alphabet.zip(rotate_alphabet_by_c)]
+    (Hash[alphabet.zip(rotate_alphabet_by_c)]).invert
   end
 
   def hash_d
-    Hash[alphabet.zip(rotate_alphabet_by_d)]
+    (Hash[alphabet.zip(rotate_alphabet_by_d)]).invert
   end
 
-  def encrypt
-    encrypted_message = groups_of_four.map do |substring|
+  def decrypt
+    message = groups_of_four.map do |substring|
       a = hash_a[substring[0]]
       b = hash_b[substring[1]]
       c = hash_c[substring[2]]
       d = hash_d[substring[3]]
       "#{a}#{b}#{c}#{d}"
     end
-    encrypted_message.join
+    message.join
   end
 end
