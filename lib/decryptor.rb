@@ -1,4 +1,5 @@
 require_relative 'offset'
+
 # Implementation code for decryptor function.
 class Decryptor
   attr_reader :message

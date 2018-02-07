@@ -52,17 +52,19 @@ class DecryptorTest < Minitest::Test
   end
 
   def test_that_hash_can_be_created_and_inverted
-    skip
-    encryptor = Encryptor.new('kidfnyhio')
+    decryptor = Decryptor.new('kidfnyhio')
 
-    expected = ['h', 'i', 'j', 'k', 'l', 'm',
-                'n', 'o', 'p', 'q', 'r', 's',
-                't', 'u', 'v', 'w', 'x', 'y',
-                'z', '0', '1', '2', '3', '4',
-                '5', '6', '7', '8', '9', ' ',
-                '.', ',', 'a', 'b', 'c', 'd',
-                'e', 'f', 'g']
-    actual = encryptor.hash_a
+    expected = {"h"=>"a", "i"=>"b", "j"=>"c", "k"=>"d",
+                "l"=>"e", "m"=>"f", "n"=>"g", "o"=>"h",
+                "p"=>"i", "q"=>"j", "r"=>"k", "s"=>"l",
+                "t"=>"m", "u"=>"n", "v"=>"o", "w"=>"p",
+                "x"=>"q", "y"=>"r", "z"=>"s", "0"=>"t",
+                "1"=>"u", "2"=>"v", "3"=>"w", "4"=>"x",
+                "5"=>"y", "6"=>"z", "7"=>"0", "8"=>"1",
+                "9"=>"2", " "=>"3", "."=>"4", ","=>"5",
+                "a"=>"6", "b"=>"7", "c"=>"8", "d"=>"9",
+                "e"=>" ", "f"=>".", "g"=>","}
+    actual = decryptor.hash_a
 
     assert_equal expected, actual
   end
