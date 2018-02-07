@@ -59,21 +59,12 @@ class EncryptorTest < Minitest::Test
     assert_equal expected, actual
   end
 
-  def test_that_substring_can_be_encrypted
-    encryptor = Encryptor.new('hellhell')
+  def test_for_encrypt_method
+    encryptor = Encryptor.new('messagemessage')
 
-    expected = "ojnpojnp"
-    actual = encryptor.convert_substring
+    expected = 'tjuwhlgqlxuenj'
+    actual = encryptor.encrypt
 
     assert_equal expected, actual
   end
-
-  # def test_for_encrypt_method
-  #   encryptor = Encryptor.new('messagemessage')
-  #
-  #   expected = 'tjuwhlgtjuwhlg'
-  #   actual = encryptor.convert_substring
-  #
-  #   assert_equal expected, actual
-  # end
 end

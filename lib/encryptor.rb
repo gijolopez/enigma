@@ -77,15 +77,14 @@ class Encryptor
     Hash[alphabet.zip(rotate_alphabet_by_d)]
   end
 
-  def convert_substring
-    substring_a = hash_a[split_chars[0]]
-    substring_b = hash_b[split_chars[1]]
-    substring_c = hash_c[split_chars[2]]
-    substring_d = hash_d[split_chars[3]]
-    "#{substring_a}#{substring_b}#{substring_c}#{substring_d}"
+  def encrypt
+  encrypted_message = groups_of_four.map do |substring|
+    a = hash_a[substring[0]]
+    b = hash_b[substring[1]]
+    c = hash_c[substring[2]]
+    d = hash_d[substring[3]]
+    "#{a}#{b}#{c}#{d}"
   end
-
+  encrypted_message.join
+  end
 end
-
-encryptor = Encryptor.new("hell")
-print encryptor.hash_a
