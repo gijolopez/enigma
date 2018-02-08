@@ -22,10 +22,15 @@ class CrackTest < Minitest::Test
     assert_equal '070218', crack.date
   end
 
-  def test_can_compare_encrypted_and_decrypted_index_position
-    crack = Crack.new('5', '070218')
+  # def test_can_compare_encrypted_and_decrypted_index_position
+  #   crack = Crack.new(',9bhr0bxw08', '070218')
+  #
+  #   assert_equal 18, crack.compare_position
+  # end
 
-    assert_equal 3, crack.compare_position
+  def test_remainder_in_encrypted_message
+    crack = Crack.new(',9bhr0bxw08', '070218')
 
+    assert_equal 
   end
 end

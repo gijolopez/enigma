@@ -88,3 +88,6 @@ class Encryptor
   encrypted_message.join
   end
 end
+
+encryptor = Encryptor.new('the ..end..', '12345', '070218')
+puts encryptor.encrypt
