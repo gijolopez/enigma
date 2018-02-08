@@ -5,8 +5,7 @@ require_relative 'key_generator'
 class Offset
   attr_reader :date, :key
 
-  def initialize(key = KeyGenerator.new.new_key,
-                 date = Date.today.strftime('%d%m%y'))
+  def initialize(key,date)
     @key = key
     @date = date
   end
