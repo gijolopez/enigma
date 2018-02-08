@@ -5,7 +5,8 @@ class Decryptor
   attr_reader :message
   def initialize(message,key,date)
     @message = message
-    @offset = Offset.new(key,date)
+    @date  = Date.today.strftime('%d%m%y')
+    @offset = Offset.new(key,@date)
   end
 
   def split_chars

@@ -7,25 +7,25 @@ require 'minitest/pride'
 # Tests Encryptor class.
 class EncryptorTest < Minitest::Test
   def test_it_exist
-    encryptor = Encryptor.new('Hello')
+    encryptor = Encryptor.new('Hello', '00000', '070218')
 
     assert_instance_of Encryptor, encryptor
   end
 
   def test_message_argument
-    encryptor = Encryptor.new('Hello')
+    encryptor = Encryptor.new('Hello', '00000', '070218')
 
     assert_equal 'Hello', encryptor.message
   end
 
   def test_split_message_into_character_array
-    encryptor = Encryptor.new('Hello')
+    encryptor = Encryptor.new('Hello', '00000', '070218')
 
     assert_equal %w[h e l l o], encryptor.split_chars
   end
 
   def test_group_chars_in_fours
-    encryptor = Encryptor.new('The boy laughs')
+    encryptor = Encryptor.new('The boy laughs', '00000', '070218')
     encryptor.split_chars
 
     expected = [['t', 'h', 'e', ' '],
@@ -37,7 +37,7 @@ class EncryptorTest < Minitest::Test
   end
 
   def test_that_alphabet_can_be_rotated_forward
-    encryptor = Encryptor.new('message')
+    encryptor = Encryptor.new('message', '00000', '070218')
 
     expected = ['f', 'g', 'h', 'i', 'j', 'k', 'l',
                 'm', 'n', 'o', 'p', 'q', 'r', 's',
@@ -51,7 +51,7 @@ class EncryptorTest < Minitest::Test
   end
 
   def test_that_hash_can_be_created
-    encryptor = Encryptor.new('message')
+    encryptor = Encryptor.new('message', '00000', '070218')
 
     expected =
     actual = encryptor.hash_c
@@ -60,7 +60,7 @@ class EncryptorTest < Minitest::Test
   end
 
   def test_for_encrypt_method
-    encryptor = Encryptor.new('messagemessage')
+    encryptor = Encryptor.new('messagemessage', '00000', '070218')
 
     expected = 'tjuwhlgqlxuenj'
     actual = encryptor.encrypt

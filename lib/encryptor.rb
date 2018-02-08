@@ -6,7 +6,9 @@ class Encryptor
   attr_reader :message
   def initialize(message,key,date)
     @message = message
-    @offset = Offset.new(key,date)
+    @date  = Date.today.strftime('%d%m%y')
+    @offset = Offset.new(key,@date)
+
   end
 
   def alphabet
@@ -88,6 +90,3 @@ class Encryptor
   encrypted_message.join
   end
 end
-
-encryptor = Encryptor.new('the ..end..', '12345', '070218')
-puts encryptor.encrypt
