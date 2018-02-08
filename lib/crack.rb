@@ -19,12 +19,39 @@ class Crack
      ' ', '.', ',']
   end
 
-  
+  def calculate_0_mod_rotation
+    last_four_array = @encrypted_message.chars[-4..-1]
+    actual_last_four = ["n", "d", ".", "."]
+    zipped = last_four_array.zip(actual_last_four)
+    zipped.map do |subarray|
+      alphabet.index(subarray[1]) - alphabet.index(subarray[0])
+    end
+  end
 
-  # def compare_position
-  #   (alphabet.index('.') - 2) - alphabet.index(@encrypted_message) + 7
-  #   # binding.pry
-  #    #encryted - decrypted position
-  #    # return value
-  # end
+  def calculate_1_mod_rotation
+    last_four_array = @encrypted_message.chars[-5..-2]
+    actual_last_four = ["e", "n", "d", "."]
+    zipped = last_four_array.zip(actual_last_four)
+    zipped.map do |subarray|
+      alphabet.index(subarray[1]) - alphabet.index(subarray[0])
+    end
+  end
+
+  def calculate_2_mod_rotation
+    last_four_array = @encrypted_message.chars[-6..-3]
+    actual_last_four = [".", "e", "n", "d"]
+    zipped = last_four_array.zip(actual_last_four)
+    zipped.map do |subarray|
+      alphabet.index(subarray[1]) - alphabet.index(subarray[0])
+    end
+  end
+
+  def calculate_3_mod_rotation
+    last_four_array = @encrypted_message.chars[-7..-4]
+    actual_last_four = [".", ".", "e", "n"]
+    zipped = last_four_array.zip(actual_last_four)
+    zipped.map do |subarray|
+      alphabet.index(subarray[1]) - alphabet.index(subarray[0])
+    end
+  end
 end
