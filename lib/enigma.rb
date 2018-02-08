@@ -16,13 +16,8 @@ class Enigma
   def encrypt(message,
               key = KeyGenerator.new.new_key,
               date = Date.today.strftime('%d%m%y'))
-              
+
     encryptor = Encryptor.new(message,key,date)
     encryptor.encrypt
   end
-
-
-
-
-
 end

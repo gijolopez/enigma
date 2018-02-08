@@ -55,15 +55,42 @@ class Crack
     end
   end
 
-  def remainder
+  def rotation
     if @encrypted_message.length % 4 == 0
-      calculate_0_mod_rotation
+      key_array = calculate_0_mod_rotation
     elsif @encrypted_message.length % 4 == 1
-      calculate_1_mod_rotation
+      key_array = calculate_1_mod_rotation
     elsif @encrypted_message.length % 4 == 2
-      calculate_2_mod_rotation
+      key_array = calculate_2_mod_rotation
     else
-      calculate_3_mod_rotation
+      key_array = calculate_3_mod_rotation
     end
+  end
+
+  def substring
+    if @encrypted_message.length % 4 == 0
+      @encrypted_message.chars[-4..-1]
+    elsif @encrypted_message.length % 4 == 1
+      @encrypted_message.chars[-5..-2]
+    elsif @encrypted_message.length % 4 == 2
+      @encrypted_message.chars[-6..-3]
+    else
+      @encrypted_message.chars[-7..-4]
+    end
+  end
+
+  def crack
+    @encrypted_message = groups_of_four.map do |substring|
+      a = hash_a[substring[0]]
+      b = hash_b[substring[1]]
+      c = hash_c[substring[2]]
+      d = hash_d[substring[3]]
+      "#{a}#{b}#{c}#{d}"
+    end
+    message.join
+    zipped = substring.zip(rotation)
+    zipped.map! do |subarray|
+      alphabet[alphabet.index(subarray[0]) + subarray[1]]
+    end.join
   end
 end

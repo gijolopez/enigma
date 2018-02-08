@@ -6,7 +6,9 @@ class Encryptor
   attr_reader :message
   def initialize(message,key,date)
     @message = message
-    @offset = Offset.new(key,date)
+    @date  = Date.today.strftime('%d%m%y')
+    @offset = Offset.new(key,@date)
+
   end
 
   def alphabet
@@ -27,6 +29,14 @@ class Encryptor
     sub_strings = []
     split_chars.each_slice(4) { |letter| sub_strings << letter }
     sub_strings
+  end
+
+  def rotate_alphabet_by_a
+    alphabet_a = alphabet
+    @offset.a_rotation.times do
+      alphabet_a.push(alphabet_a.shift)
+    end
+    alphabet_a
   end
 
   def rotate_alphabet_by_b
@@ -51,14 +61,6 @@ class Encryptor
       alphabet_d.push(alphabet_d.shift)
     end
     alphabet_d
-  end
-
-  def rotate_alphabet_by_a
-    alphabet_a = alphabet
-    @offset.a_rotation.times do
-      alphabet_a.push(alphabet_a.shift)
-    end
-    alphabet_a
   end
 
   def hash_a
@@ -88,6 +90,3 @@ class Encryptor
   encrypted_message.join
   end
 end
-
-encryptor = Encryptor.new('the ..end..', '12345', '070218')
-puts encryptor.encrypt

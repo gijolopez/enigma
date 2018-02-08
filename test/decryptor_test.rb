@@ -8,25 +8,25 @@ require 'minitest/pride'
 # Tests Encryptor class.
 class DecryptorTest < Minitest::Test
   def test_decryptor_class_exists
-    decryptor = Decryptor.new('hello')
+    decryptor = Decryptor.new('hello', '00000', '070218')
 
     assert_instance_of Decryptor, decryptor
   end
 
   def test_message_argument
-    decryptor = Decryptor.new('kidfn')
+    decryptor = Decryptor.new('kidfn', '00000', '070218')
 
     assert_equal 'kidfn', decryptor.message
   end
 
   def test_split_message_into_character_array
-    decryptor = Decryptor.new('kidfn')
+    decryptor = Decryptor.new('kidfn', '00000', '070218')
 
     assert_equal %w[k i d f n], decryptor.split_chars
   end
 
   def test_group_chars_in_fours
-    decryptor = Decryptor.new('kidfnyhio')
+    decryptor = Decryptor.new('kidfnyhio', '00000', '070218')
     decryptor.split_chars
 
     expected = [['k', 'i', 'd', 'f'],
@@ -37,7 +37,7 @@ class DecryptorTest < Minitest::Test
   end
 
   def test_that_alphabet_can_be_rotated_forward
-    decryptor = Decryptor.new('kidfnyhio')
+    decryptor = Decryptor.new('kidfnyhio', '00000', '070218')
 
     expected = ['h', 'i', 'j', 'k', 'l', 'm',
                 'n', 'o', 'p', 'q', 'r', 's',
@@ -52,7 +52,7 @@ class DecryptorTest < Minitest::Test
   end
 
   def test_that_hash_can_be_created_and_inverted
-    decryptor = Decryptor.new('kidfnyhio')
+    decryptor = Decryptor.new('kidfnyhio', '00000', '070218')
 
     expected = {"h"=>"a", "i"=>"b", "j"=>"c", "k"=>"d",
                 "l"=>"e", "m"=>"f", "n"=>"g", "o"=>"h",
@@ -70,7 +70,7 @@ class DecryptorTest < Minitest::Test
   end
 
   def test_for_decrypt_method
-    decryptor = Decryptor.new('tjuwhlgqlxuenj')
+    decryptor = Decryptor.new('tjuwhlgqlxuenj', '00000', '070218')
 
     expected = 'messagemessage'
     actual = decryptor.decrypt
