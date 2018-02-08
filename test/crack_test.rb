@@ -44,4 +44,18 @@ class CrackTest < Minitest::Test
     crack = Crack.new('iuyhr0bxw08', '070218')
     assert_equal [20, 11, 3, -10],  crack.remainder
   end
+
+  def test_for_crack_method
+    crack = Crack.new('hr0bxw08', '070218')
+    assert_equal ["n", "d", ".", "."], crack.crack
+
+    crack = Crack.new('chr0bxw08', '070218')
+    assert_equal ["e", "n", "d", "."], crack.remainder
+
+    crack = Crack.new('cyhr0bxw08', '070218')
+    assert_equal [".", "e", "n", "d"], crack.remainder
+
+    crack = Crack.new('iuyhr0bxw08', '070218')
+    assert_equal [".", ".", "e", "n"],  crack.remainder
+  end
 end

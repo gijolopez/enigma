@@ -29,6 +29,14 @@ class Encryptor
     sub_strings
   end
 
+  def rotate_alphabet_by_a
+    alphabet_a = alphabet
+    @offset.a_rotation.times do
+      alphabet_a.push(alphabet_a.shift)
+    end
+    alphabet_a
+  end
+
   def rotate_alphabet_by_b
     alphabet_b = alphabet
     @offset.b_rotation.times do
@@ -51,14 +59,6 @@ class Encryptor
       alphabet_d.push(alphabet_d.shift)
     end
     alphabet_d
-  end
-
-  def rotate_alphabet_by_a
-    alphabet_a = alphabet
-    @offset.a_rotation.times do
-      alphabet_a.push(alphabet_a.shift)
-    end
-    alphabet_a
   end
 
   def hash_a

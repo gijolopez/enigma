@@ -66,4 +66,13 @@ class Crack
       calculate_3_mod_rotation
     end
   end
+
+  def crack
+    encrypted_array = @encrypted_message.chars
+    key_array = remainder
+    zipped = encrypted_array.zip(key_array)
+    zipped.map do |subarray|
+      alphabet[alphabet.index(subarray[0]) + subarray[1]]
+    end
+  end
 end
