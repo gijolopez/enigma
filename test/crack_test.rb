@@ -31,9 +31,17 @@ class CrackTest < Minitest::Test
     assert_equal [20, 11, 3, -10],  crack.calculate_3_mod_rotation
   end
 
-  # def test_remainder_in_encrypted_message
-  #   crack = Crack.new(',9bhr0bxw08', '070218')
-  #
-  #   assert_equal
-  # end
+  def test_which_rotation_to_calculate
+    crack = Crack.new('hr0bxw08', '070218')
+    assert_equal [-10, -19, 11, 3], crack.remainder
+
+    crack = Crack.new('chr0bxw08', '070218')
+    assert_equal [3, -10, -19, 11], crack.remainder
+
+    crack = Crack.new('cyhr0bxw08', '070218')
+    assert_equal [11, 3, -10, -19], crack.remainder
+
+    crack = Crack.new('iuyhr0bxw08', '070218')
+    assert_equal [20, 11, 3, -10],  crack.remainder
+  end
 end

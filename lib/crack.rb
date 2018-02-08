@@ -54,4 +54,16 @@ class Crack
       alphabet.index(subarray[1]) - alphabet.index(subarray[0])
     end
   end
+
+  def remainder
+    if @encrypted_message.length % 4 == 0
+      calculate_0_mod_rotation
+    elsif @encrypted_message.length % 4 == 1
+      calculate_1_mod_rotation
+    elsif @encrypted_message.length % 4 == 2
+      calculate_2_mod_rotation
+    else
+      calculate_3_mod_rotation
+    end
+  end
 end
